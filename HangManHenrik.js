@@ -19,11 +19,22 @@ var ordliste = [
 function spill() {
     interfaceEL.style.display = "block";
     sjanser = 6;
-    sjanserEL.innerHTML = "sjanser:" + sjanser;
+    sjanserEL.innerHTML = "Du har " + sjanser + " sjanser igjen";
     riktigbokstaver = [];
     bruktebokstaver = [];
     bokstavEl.value = "";
     ord = ordliste[Math.floor(Math.random() * ordliste.length)];
     console.log(ord);
-    lagBokstavBokser();
 }
+function gjett() {
+    var gjettetbokstav = bokstavEl.value;
+    if (gjettetbokstav.length != 1) {
+        alert("Du må gjette på en bokstav");
+        return;
+    }
+    if (bruktebokstaver.includes(gjettetbokstav)) {
+        alert("Du har allerede gjettet på denne bokstaven");
+        return;
+    }
+}
+spill();
