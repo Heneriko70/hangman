@@ -36,5 +36,25 @@ function gjett() {
         alert("Du har allerede gjettet på denne bokstaven");
         return;
     }
+    if (riktigbokstaver.includes(gjettetbokstav)) {
+        alert("Du har allerede gjettet riktig på denne bokstaven");
+        
+        return;
+    }
+    if (ord.includes(gjettetbokstav)) {
+        var count = 0;
+        const charCount = (ord, gjettetbokstav) => { 
+            const count = ord.split(ord).length - 1; 
+            return count;
+          } 
+        count = charCount(ord, gjettetbokstav);
+        console.log(count);
+        riktigbokstaver.push(gjettetbokstav*count);
+        riktigbokstaverEL.innerHTML = riktigbokstaver.join(" ");
+        if (riktigbokstaver.length == ord.length) {
+            alert("Gratulerer, du har vunnet!");
+            spill();
+        }
+    }
 }
 spill();
