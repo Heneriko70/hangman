@@ -15,6 +15,8 @@ var ordliste = [
     "språk", "kultur", "litteratur", "filosofi", "psykologi", "økonomi", "politikk", "religion", "sosiologi", "teknologi",
     "arkitektur", "medisin", "jus", "fysikk", "kjemi", "biologi", "astronomi", "geologi", "meteorologi", "zoologi"
 ];
+var ord = "";
+var splittetord = [];
 
 function spill() {
     interfaceEL.style.display = "block";
@@ -24,37 +26,36 @@ function spill() {
     bruktebokstaver = [];
     bokstavEl.value = "";
     ord = ordliste[Math.floor(Math.random() * ordliste.length)];
+    for (var i = 0; i < ord.length; i++) {
+        riktigbokstaver.push("_");
+    }
     console.log(ord);
+    indices = [];
+    for (var i = 0; i < ord.length; i++) {
+        indices.push(i);
+        extractLetters(ord, indices);
+    }
+
+
 }
+function extractLetters(ord, indices) {
+    var letters = [];
+    for (var i = 0; i < indices.length; i++) {
+        // Check if the index is within the range of the word's length
+        if (indices[i] >= 0 && indices[i] < ord.length) {
+            // Add the letter at the specified index to the list
+            letters.push(ord.charAt(indices[i]));
+        }
+    }
+    return letters;
+}
+spill();
 function gjett() {
-    var gjettetbokstav = bokstavEl.value;
-    if (gjettetbokstav.length != 1) {
-        alert("Du må gjette på en bokstav");
-        return;
-    }
-    if (bruktebokstaver.includes(gjettetbokstav)) {
-        alert("Du har allerede gjettet på denne bokstaven");
-        return;
-    }
-    if (riktigbokstaver.includes(gjettetbokstav)) {
-        alert("Du har allerede gjettet riktig på denne bokstaven");
-        
-        return;
-    }
-    if (ord.includes(gjettetbokstav)) {
-        var count = 0;
-        const charCount = (ord, gjettetbokstav) => { 
-            const count = ord.split(ord).length - 1; 
-            return count;
-          } 
-        count = charCount(ord, gjettetbokstav);
-        console.log(count);
-        riktigbokstaver.push(gjettetbokstav*count);
-        riktigbokstaverEL.innerHTML = riktigbokstaver.join(" ");
-        if (riktigbokstaver.length == ord.length) {
-            alert("Gratulerer, du har vunnet!");
-            spill();
+    var splittetord=extractLetters(ord, indices);
+    for (var i = 0; i < ord.length; i++) {
+        if (splittetord[i] == bokstavEl.value) {
+            riktigbokstaver[i] = bokstavEl.value;
+            riktigbokstaverEL.innerHTML = riktigbokstaver.join(" ");
         }
     }
 }
-spill();
