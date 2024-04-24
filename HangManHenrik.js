@@ -17,10 +17,10 @@ var ordliste = [
 ];
 var ord = "";
 var splittetord = [];
+var sjanser = 6;
 
 function spill() {
     interfaceEL.style.display = "block";
-    sjanser = 6;
     sjanserEL.innerHTML = "Du har " + sjanser + " sjanser igjen";
     riktigbokstaver = [];
     bruktebokstaver = [];
@@ -51,11 +51,31 @@ function extractLetters(ord, indices) {
 }
 spill();
 function gjett() {
+    if (bokstavEl.value==ord){
+        alert("Gratulerer! Du har gjettet riktig ord!");
+        spill();
+    }
     var splittetord=extractLetters(ord, indices);
     for (var i = 0; i < ord.length; i++) {
         if (splittetord[i] == bokstavEl.value) {
             riktigbokstaver[i] = bokstavEl.value;
             riktigbokstaverEL.innerHTML = riktigbokstaver.join(" ");
-        }
+        }       
     }
+    if (!splittetord.includes(bokstavEl.value)) {
+        sjanser--;
+        sjanserEL.innerHTML = "Du har " + sjanser + " sjanser igjen";
+    }
+    bruktebokstaver.push(bokstavEl.value);
+    bruktebokstaverEL.innerHTML = bruktebokstaver.join(", ");
+    if (sjanser == 0) {
+        alert("Du har brukt opp alle sjansene dine! Ordet var " + ord);
+        spill();
+    }
+    else if (riktigbokstaver.join("") == ord) {
+        alert("Gratulerer! Du har gjettet riktig ord!");
+        spill();
+    }
+    bokstavEl.value = "";
+
 }
