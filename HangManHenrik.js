@@ -6,8 +6,22 @@ var bruktebokstaverEL = document.querySelector("#bruktebokstaver");
 var bokstavEl = document.querySelector("#bokstav");
 var gjettEL = document.querySelector("#gjett");
 gjettEL.addEventListener("click", gjett);
+
+
+var navnEL=document.querySelector("#navn");
+
 var highsscorebuttonEL = document.querySelector("#highscorebutton");
 highsscorebuttonEL.addEventListener("click", highscore);
+
+var taperskjermEl = document.querySelector("#taperskjerm");
+var tapertekstEl = document.querySelector("#tapertekst");
+var prøvigjenKnapp1EL = document.querySelector("#prøvigjenKnapp1");
+prøvigjenKnapp1EL.addEventListener("click", spilligjen);
+
+
+var vinnerskjermEl = document.querySelector("#vinnerskjerm");
+//var provIgjen2EL = document.querySelector("#prøvIgjen2");
+//provIgjen2EL.addEventListener("click", spilligjen);
 
 var ordliste = [
     "bok", "skrive", "lære", "bilde", "hund", "katt", "bord", "stol", "skole", "arbeid",
@@ -69,7 +83,9 @@ function gjett() {
     bruktebokstaver.push(bokstavEl.value);
     bruktebokstaverEL.innerHTML = bruktebokstaver.join(", ");
     if (sjanser == 0) {
-        alert("Du har brukt opp alle sjansene dine! Ordet var " + ord);
+        innholdEL.style.display = "none";
+        taperskjermEl.style.display = "block";
+        tapertekstEl.innerHTML = "Beklager, du har brukt opp alle sjansene dine. Riktig ord var " + ord;
         spill();
     }
     else if (riktigbokstaver.join("") == ord) {
@@ -77,5 +93,12 @@ function gjett() {
         spill();
     }
     bokstavEl.value = "";
+
+}
+function spilligjen() {
+    sjanser = 6;
+    spill();
+    taperskjermEl.style.display = "none";
+    vinnerskjermEl.style.display = "none";
 
 }

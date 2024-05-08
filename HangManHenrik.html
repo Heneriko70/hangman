@@ -11,6 +11,11 @@
     <div id="innhold">
         <div id="interface">
             <h1>Hangman</h1>
+            <div id="spillernavn">
+                <label for="navn">Skriv inn navnet ditt:</label>
+                <input type="text" id="navn">
+                <button id="start">Start</button>
+            </div>
             <div id="sjanser">
             </div>
             <div>
@@ -35,7 +40,28 @@
 
         </div>
     </div>
+    <div id="highscoreliste" style="display: none;">
+        <h2>Highscore</h2>
+        <table>
+            <tr>
+                <th>Navn</th>
+                <th>Score</th>
+            </tr>
+        </table>
+        <button id="lukk">Lukk</button>
     <script src="HangManHenrik.js"></script>
+    </div>
+    <div id="taperskjerm" style="display: none">
+        <h1>Du tapte</h1>
+        <p id="tapertekst"></p>
+        <button id="prøvigjenKnapp1">Prøv igjen</button>
+    </div>
+    <div id="vinnerskjerm" style="display: none">
+        <h1>Gratulerer</h1>
+        <p></p>
+        <button id="provIgjen2">Prøv igjen</button>
+        <button id="highscore2">Highscore</button>
+    </div>
 
 </body>
 
