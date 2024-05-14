@@ -11,11 +11,6 @@
     <div id="innhold">
         <div id="interface">
             <h1>Hangman</h1>
-            <div id="spillernavn">
-                <label for="navn">Skriv inn navnet ditt:</label>
-                <input type="text" id="navn">
-                <button id="start">Start</button>
-            </div>
             <div id="sjanser">
             </div>
             <div>
@@ -42,12 +37,8 @@
     </div>
     <div id="highscoreliste" style="display: none;">
         <h2>Highscore</h2>
-        <table>
-            <tr>
-                <th>Navn</th>
-                <th>Score</th>
-            </tr>
-        </table>
+        <div id="highscorelisteinnhold">
+        </div>
         <button id="lukkhighscore ">Lukk</button>
     </div>
     <div id="taperskjerm" style="display: none">
@@ -59,6 +50,11 @@
     <div id="vinnerskjerm" style="display: none">
         <h1>Gratulerer du vant!!!</h1>
         <p></p>
+        <div id="spillernavn">
+            <label for="navn">Skriv inn navnet ditt:</label>
+            <input type="text" id="navn">
+            <button id="highscoreupload">Last opp highscore</button>
+        </div>
         <button id="provIgjen2">Spill igjen</button>
         <button id="highscore3">Highscore</button>
     </div>

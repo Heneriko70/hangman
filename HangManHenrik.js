@@ -7,6 +7,7 @@ var bokstavEl = document.querySelector("#bokstav");
 var gjettEL = document.querySelector("#gjett");
 gjettEL.addEventListener("click", gjett);
 
+var gangergjett=0;
 
 var navnEL=document.querySelector("#navn");
 
@@ -19,7 +20,9 @@ highscore3EL.addEventListener("click", highscore);
 var highscorelisteEl = document.querySelector("#highscoreliste");
 var lukkhighscoreEl = document.querySelector("#lukkhighscore");
 lukkhighscoreEl.addEventListener("click", spilligjen);
-
+var highscorelisteinnholdEl = document.querySelector("#highscorelisteinnhold");
+var highscoreuploadEl = document.querySelector("#highscoreupload");
+highscoreuploadEl.addEventListener("click", highscoreupload);
 
 var taperskjermEl = document.querySelector("#taperskjerm");
 var tapertekstEl = document.querySelector("#tapertekst");
@@ -78,6 +81,7 @@ function gjett() {
     if (bokstavEl.value==ord){
         vinnerskjermEl.style.display="block";
         innholdEL.style.display="none";
+
     }
     var splittetord=extractLetters(ord, indices);
     for (var i = 0; i < ord.length; i++) {
@@ -102,6 +106,8 @@ function gjett() {
         vinnerskjermEl.style.display = "block";
     }
     bokstavEl.value = "";
+    gangergjett++;
+    console.log(gangergjett);
 
 }
 function spilligjen() {
@@ -119,4 +125,33 @@ function highscore(){
     taperskjermEl.style.display="none";
     vinnerskjermEl.style.display="none";
     highscorelisteEl.style.display="block";
+}
+function highscoreupload(){
+    var navn=navnEL.value;
+    var gangergjett=gangergjett;
+    while (highscorelisteinnholdEl.firstChild) {
+        highscorelisteinnholdElEl.removeChild(highscorelisteinnholdEl.firstChild);
+    }
+
+
+    var tableEl = document.createElement("table");
+    var tbodyEl = document.createElement("tbody");
+
+    var overskriter = "<tr>";
+    overskriter += "<th>Navn</th>";
+    overskriter += "<th>Antall gjett</th>";
+
+    tbodyEl.innerHTML += overskriter;
+
+    for (var i = 0; i < personer.value; i++) {
+        var rad = "<tr>";
+        rad += "<td>" + personer[i].navn + "</td>";
+        rad += "<td>" + personer[i].antallgjett + "</td>";
+        rad += "</tr>";
+
+        tbodyEl.innerHTML += rad;
+    }
+
+    tableEl.appendChild(tbodyEl);
+    innpakningEl.appendChild(tableEl);
 }
