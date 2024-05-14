@@ -1,8 +1,8 @@
 var innholdEL = document.querySelector("#innhold");
 var interfaceEL = document.querySelector("#interface");
 var sjanserEL = document.querySelector("#sjanser");
-var riktigbokstaverEL = document.querySelector("#riktigbokstaver");
-var bruktebokstaverEL = document.querySelector("#bruktebokstaver");
+var riktigbokstaverEl = document.querySelector("#riktigbokstaver");
+var bruktebokstaverEl = document.querySelector("#bruktebokstaver");
 var bokstavEl = document.querySelector("#bokstav");
 var gjettEL = document.querySelector("#gjett");
 gjettEL.addEventListener("click", gjett);
@@ -10,18 +10,28 @@ gjettEL.addEventListener("click", gjett);
 
 var navnEL=document.querySelector("#navn");
 
-var highsscorebuttonEL = document.querySelector("#highscorebutton");
-highsscorebuttonEL.addEventListener("click", highscore);
+var highscore1EL = document.querySelector("#highscore1");
+var highscore2EL = document.querySelector("#highscore2");
+var highscore3EL = document.querySelector("#highscore3");
+highscore1EL.addEventListener("click", highscore);
+highscore2EL.addEventListener("click", highscore);
+highscore3EL.addEventListener("click", highscore);
+var highscorelisteEl = document.querySelector("#highscoreliste");
+var lukkhighscoreEl = document.querySelector("#lukkhighscore");
+lukkhighscoreEl.addEventListener("click", spilligjen);
+
 
 var taperskjermEl = document.querySelector("#taperskjerm");
 var tapertekstEl = document.querySelector("#tapertekst");
-var prøvigjenKnapp1EL = document.querySelector("#prøvigjenKnapp1");
-prøvigjenKnapp1EL.addEventListener("click", spilligjen);
+var Provigjenknapp1El = document.querySelector("#Provigjenknapp1");
+Provigjenknapp1El.addEventListener("click", spilligjen);
+
+
 
 
 var vinnerskjermEl = document.querySelector("#vinnerskjerm");
-//var provIgjen2EL = document.querySelector("#prøvIgjen2");
-//provIgjen2EL.addEventListener("click", spilligjen);
+var provIgjen2El = document.querySelector("#provIgjen2");
+provIgjen2El.addEventListener("click", spilligjen);
 
 var ordliste = [
     "bok", "skrive", "lære", "bilde", "hund", "katt", "bord", "stol", "skole", "arbeid",
@@ -66,8 +76,8 @@ function extractLetters(ord, indices) {
 spill();
 function gjett() {
     if (bokstavEl.value==ord){
-        alert("Gratulerer! Du har gjettet riktig ord!");
-        spill();
+        vinnerskjermEl.style.display="block";
+        innholdEL.style.display="none";
     }
     var splittetord=extractLetters(ord, indices);
     for (var i = 0; i < ord.length; i++) {
@@ -81,16 +91,15 @@ function gjett() {
         sjanserEL.innerHTML = "Du har " + sjanser + " sjanser igjen";
     }
     bruktebokstaver.push(bokstavEl.value);
-    bruktebokstaverEL.innerHTML = bruktebokstaver.join(", ");
+    bruktebokstaverEl.innerHTML = bruktebokstaver.join(", ");
     if (sjanser == 0) {
         innholdEL.style.display = "none";
         taperskjermEl.style.display = "block";
         tapertekstEl.innerHTML = "Beklager, du har brukt opp alle sjansene dine. Riktig ord var " + ord;
-        spill();
     }
     else if (riktigbokstaver.join("") == ord) {
-        alert("Gratulerer! Du har gjettet riktig ord!");
-        spill();
+        innholdEL.style.display = "none";
+        vinnerskjermEl.style.display = "block";
     }
     bokstavEl.value = "";
 
@@ -100,5 +109,14 @@ function spilligjen() {
     spill();
     taperskjermEl.style.display = "none";
     vinnerskjermEl.style.display = "none";
+    innholdEL.style.display = "block";
+    bruktebokstaverEl.innerHTML = "";
 
+}
+
+function highscore(){
+    innholdEL.style.display="none";
+    taperskjermEl.style.display="none";
+    vinnerskjermEl.style.display="none";
+    highscorelisteEl.style.display="block";
 }
