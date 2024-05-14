@@ -10,24 +10,28 @@
 <body>
     <div id="innhold">
         <div id="interface">
-            <h1>Hangman</h1>
+            <div class="overskrift">
+                <h1>Hangman</h1>
+            </div>
             <div id="sjanser">
-            </div>
-            <div>
-                <p>Riktige bokstaver:</p>
-                <p id="riktigbokstaver"></p>
-            </div>
-            <div>
-                <p>Brukte bokstaver:</p>
-                <p id="bruktebokstaver"></p>
             </div>
             <div id="bokstavinput">
                 <label for="bokstav">Gjett en bokstav eller hele ordet:</label>
                 <input type="text" id="bokstav">
                 <button id="gjett">Gjett</button>
             </div>
+            <div id="bokstaver">
+                <div class="boks">
+                    <p>Riktige bokstaver:</p>
+                    <p id="riktigbokstaver"></p>
+                </div>
+                <div class="boks">
+                    <p>Brukte bokstaver:</p>
+                    <p id="bruktebokstaver"></p>
+                </div>
+            </div>
             <div id="highscore">
-                <h2>Trykk her for highscore:</h2>
+                <h3>Trykk her for highscore:</h3>
                 <button id="highscore1">Highscore</button>
             </div>
         </div>
@@ -42,7 +46,7 @@
         <button id="lukkhighscore ">Lukk</button>
     </div>
     <div id="taperskjerm" style="display: none">
-        <h1>Du tapte</h1>
+        <h1 class="overskrift">Du tapte</h1>
         <p id="tapertekst"></p>
         <button id="Provigjenknapp1">Prøv igjen</button>
         <button id="highscore2">Highscore</button>
@@ -55,8 +59,9 @@
             <input type="text" id="navn">
             <button id="highscoreupload">Last opp highscore</button>
         </div>
-        <button id="provIgjen2">Spill igjen</button>
-        <button id="highscore3">Highscore</button>
+        <div class="vinnerknapper"><button id="provIgjen2">Spill igjen</button></div>
+        <div class="vinnerknapper"><button id="highscore3">Highscore</button>
+        </div>
     </div>
     <script src="HangManHenrik.js"></script>
 </body>

@@ -7,9 +7,9 @@ var bokstavEl = document.querySelector("#bokstav");
 var gjettEL = document.querySelector("#gjett");
 gjettEL.addEventListener("click", gjett);
 
-var gangergjett=0;
+var gangergjett = 0;
 
-var navnEL=document.querySelector("#navn");
+var navnEL = document.querySelector("#navn");
 
 var highscore1EL = document.querySelector("#highscore1");
 var highscore2EL = document.querySelector("#highscore2");
@@ -19,7 +19,7 @@ highscore2EL.addEventListener("click", highscore);
 highscore3EL.addEventListener("click", highscore);
 var highscorelisteEl = document.querySelector("#highscoreliste");
 var lukkhighscoreEl = document.querySelector("#lukkhighscore");
-lukkhighscoreEl.addEventListener("click", spilligjen);
+//<lukkhighscoreEl.addEventListener("click", spilligjen);
 var highscorelisteinnholdEl = document.querySelector("#highscorelisteinnhold");
 var highscoreuploadEl = document.querySelector("#highscoreupload");
 highscoreuploadEl.addEventListener("click", highscoreupload);
@@ -46,6 +46,9 @@ var ord = "";
 var splittetord = [];
 var sjanser = 6;
 
+var personer = [];
+
+// Funksjon som starter spillet
 function spill() {
     interfaceEL.style.display = "block";
     sjanserEL.innerHTML = "Du har " + sjanser + " sjanser igjen";
@@ -77,18 +80,20 @@ function extractLetters(ord, indices) {
     return letters;
 }
 spill();
+
+//funksjon som sjekker om gjettet ditt er feil eller riktig
 function gjett() {
-    if (bokstavEl.value==ord){
-        vinnerskjermEl.style.display="block";
-        innholdEL.style.display="none";
+    if (bokstavEl.value == ord) {
+        vinnerskjermEl.style.display = "block";
+        innholdEL.style.display = "none";
 
     }
-    var splittetord=extractLetters(ord, indices);
+    var splittetord = extractLetters(ord, indices);
     for (var i = 0; i < ord.length; i++) {
         if (splittetord[i] == bokstavEl.value) {
             riktigbokstaver[i] = bokstavEl.value;
-            riktigbokstaverEL.innerHTML = riktigbokstaver.join(" ");
-        }       
+            riktigbokstaverEl.innerHTML = riktigbokstaver.join(" ");
+        }
     }
     if (!splittetord.includes(bokstavEl.value)) {
         sjanser--;
@@ -110,6 +115,8 @@ function gjett() {
     console.log(gangergjett);
 
 }
+
+//funksjonen som viser spillet igjen
 function spilligjen() {
     sjanser = 6;
     spill();
@@ -120,17 +127,18 @@ function spilligjen() {
 
 }
 
-function highscore(){
-    innholdEL.style.display="none";
-    taperskjermEl.style.display="none";
-    vinnerskjermEl.style.display="none";
-    highscorelisteEl.style.display="block";
+//funksjonen som viser highscore skjermen
+function highscore() {
+    innholdEL.style.display = "none";
+    taperskjermEl.style.display = "none";
+    vinnerskjermEl.style.display = "none";
+    highscorelisteEl.style.display = "block";
 }
-function highscoreupload(){
-    var navn=navnEL.value;
-    var gangergjett=gangergjett;
+function highscoreupload() {
+    var navn = navnEL.value;
+    var gangergjett = gangergjett;
     while (highscorelisteinnholdEl.firstChild) {
-        highscorelisteinnholdElEl.removeChild(highscorelisteinnholdEl.firstChild);
+        highscorelisteinnholdEl.removeChild(highscorelisteinnholdEl.firstChild);
     }
 
 
@@ -145,13 +153,13 @@ function highscoreupload(){
 
     for (var i = 0; i < personer.value; i++) {
         var rad = "<tr>";
-        rad += "<td>" + personer[i].navn + "</td>";
-        rad += "<td>" + personer[i].antallgjett + "</td>";
+        rad += "<td>" + personer[i].navnEL + "</td>";
+        rad += "<td>" + personer[i].gangergjett + "</td>";
         rad += "</tr>";
 
         tbodyEl.innerHTML += rad;
     }
 
     tableEl.appendChild(tbodyEl);
-    innpakningEl.appendChild(tableEl);
+    highscorelisteinnholdEl.appendChild(tableEl);
 }

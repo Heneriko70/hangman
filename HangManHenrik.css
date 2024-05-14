@@ -1,0 +1,147 @@
+body {
+    background-color: #f1f1f1;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#innhold {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#interface {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 50%;
+
+}
+
+.overskrift {
+    font-size: 2em;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+#sjanser {
+    font-size: 1.5em;
+    width: 100%;
+
+    border-radius: 25px;
+    padding: 1em;
+}
+
+#bokstavinput {
+    padding: 1em;
+    padding-top: 2em;
+    width: 100%;
+    font-size: 1.3em;
+}
+
+#bokstav {
+    background-color: aliceblue;
+    border-radius: 5px;
+}
+
+#gjett {
+    background-color: aliceblue;
+    border-radius: 5px;
+    width: 10%
+}
+
+#bokstaver {
+    display: flex;
+    flex-direction: row;
+    font-size: 1.3em;
+    width: 100%;
+    margin-top: 1em;
+    justify-content: center;
+}
+
+.boks {
+    padding: 1em;
+    width: 50%
+}
+
+#highscore {
+    font-size: 1.5em;
+    padding: 1em;
+    text-align: center;
+}
+
+#highscore1 {
+    font-size: 1.1em;
+    background-color: aliceblue;
+    border-radius: 10px;
+}
+
+
+#hangman {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 50%;
+}
+
+#taperskjerm {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+#Provigjenknapp1 {
+    background-color: aliceblue;
+    border-radius: 10px;
+    font-size: 1.1em;
+}
+
+#highscore2 {
+    font-size: 1.1em;
+    background-color: aliceblue;
+    border-radius: 10px;
+}
+
+#vinnerskjerm {
+    text-align: center;
+    font-size: 1.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#navn {
+    width: 15%;
+    background-color: aliceblue;
+    border-radius: 5px;
+}
+
+#highscoreupload {
+    width: 13%;
+    background-color: aliceblue;
+    border-radius: 5px;
+}
+
+#provIgjen2 {
+    background-color: aliceblue;
+    border-radius: 10px;
+    font-size: 1em;
+    width: 20%;
+}
+
+#highscore3 {
+    background-color: aliceblue;
+    border-radius: 10px;
+    font-size: 1em;
+    width: 20%;
+}
+
+.vinnerknapper {
+    font-size: 1.5em;
+    padding: 0.5em;
+}
