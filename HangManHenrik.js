@@ -18,11 +18,11 @@ highscore1EL.addEventListener("click", highscore);
 highscore2EL.addEventListener("click", highscore);
 highscore3EL.addEventListener("click", highscore);
 var highscorelisteEl = document.querySelector("#highscoreliste");
-var lukkhighscoreEl = document.querySelector("#lukkhighscore");
-//<lukkhighscoreEl.addEventListener("click", spilligjen);
 var highscorelisteinnholdEl = document.querySelector("#highscorelisteinnhold");
 var highscoreuploadEl = document.querySelector("#highscoreupload");
 highscoreuploadEl.addEventListener("click", highscoreupload);
+var lukkhighscoreEl = document.querySelector("#lukkhighscore");
+lukkhighscoreEl.addEventListener("click", spilligjen);
 
 var taperskjermEl = document.querySelector("#taperskjerm");
 var tapertekstEl = document.querySelector("#tapertekst");
@@ -124,6 +124,8 @@ function spilligjen() {
     vinnerskjermEl.style.display = "none";
     innholdEL.style.display = "block";
     bruktebokstaverEl.innerHTML = "";
+    highscorelisteEl.style.display = "none";
+    riktigbokstaverEl.innerHTML = "";
 
 }
 
@@ -136,30 +138,38 @@ function highscore() {
 }
 function highscoreupload() {
     var navn = navnEL.value;
-    var gangergjett = gangergjett;
-    while (highscorelisteinnholdEl.firstChild) {
-        highscorelisteinnholdEl.removeChild(highscorelisteinnholdEl.firstChild);
+    var antallgjett = gangergjett;
+    var highscore = getHighscoreFromCookie();
+    highscore.push({ navn: navn, antallgjett: antallgjett });
+    highscore.sort((a, b) => a.antallgjett - b.antallgjett);
+    highscore = highscore.slice(0, 3);
+    setHighscoreToCookie(highscore);
+    displayHighscore(highscore);
+}
+
+function getHighscoreFromCookie() {
+    var highscore = [];
+    var highscoreCookie = document.cookie.replace(/(?:(?:^|.*;\s*)highscore\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    if (highscoreCookie) {
+        highscore = JSON.parse(highscoreCookie);
     }
+    return highscore;
+}
 
+function setHighscoreToCookie(highscore) {
+    document.cookie = "highscore=" + JSON.stringify(highscore);
+}
 
-    var tableEl = document.createElement("table");
-    var tbodyEl = document.createElement("tbody");
-
-    var overskriter = "<tr>";
-    overskriter += "<th>Navn</th>";
-    overskriter += "<th>Antall gjett</th>";
-
-    tbodyEl.innerHTML += overskriter;
-
-    for (var i = 0; i < personer.value; i++) {
-        var rad = "<tr>";
-        rad += "<td>" + personer[i].navnEL + "</td>";
-        rad += "<td>" + personer[i].gangergjett + "</td>";
-        rad += "</tr>";
-
-        tbodyEl.innerHTML += rad;
+function displayHighscore(highscore) {
+    highscorelisteinnholdEl.innerHTML = "";
+    for (var i = 0; i < highscore.length; i++) {
+        var row = document.createElement("tr");
+        var nameCell = document.createElement("td");
+        var guessCell = document.createElement("td");
+        nameCell.textContent = highscore[i].navn;
+        guessCell.textContent = highscore[i].antallgjett;
+        row.appendChild(nameCell);
+        row.appendChild(guessCell);
+        highscorelisteinnholdEl.appendChild(row);
     }
-
-    tableEl.appendChild(tbodyEl);
-    highscorelisteinnholdEl.appendChild(tableEl);
 }
