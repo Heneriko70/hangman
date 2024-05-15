@@ -14,9 +14,9 @@ var navnEL = document.querySelector("#navn");
 var highscore1EL = document.querySelector("#highscore1");
 var highscore2EL = document.querySelector("#highscore2");
 var highscore3EL = document.querySelector("#highscore3");
-highscore1EL.addEventListener("click", highscore);
-highscore2EL.addEventListener("click", highscore);
-highscore3EL.addEventListener("click", highscore);
+highscore1EL.addEventListener("click", highscoreskjerm);
+highscore2EL.addEventListener("click", highscoreskjerm);
+highscore3EL.addEventListener("click", highscoreskjerm);
 var highscorelisteEl = document.querySelector("#highscoreliste");
 var highscorelisteinnholdEl = document.querySelector("#highscorelisteinnhold");
 var highscoreuploadEl = document.querySelector("#highscoreupload");
@@ -130,7 +130,7 @@ function spilligjen() {
 }
 
 //funksjonen som viser highscore skjermen
-function highscore() {
+function highscoreskjerm() {
     innholdEL.style.display = "none";
     taperskjermEl.style.display = "none";
     vinnerskjermEl.style.display = "none";
